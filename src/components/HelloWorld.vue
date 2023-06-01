@@ -1,19 +1,17 @@
+<template>
+  <div class="block">123</div>
+</template>
 <script setup lang="ts">
-import { ref } from "vue";
-
-defineProps<{ msg: string }>();
-
-const count = ref(0);
+import { computed, onMounted, ref, watch } from "vue";
 </script>
 
-<template>
-  <h1>{{ msg }}</h1>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-</template>
-
-<style scoped>
-.read-the-docs {
+<style lang="scss" scoped>
+.block {
+  height: 100px;
+  width: 100%;
   display: flex;
-  color: #888;
+  align-items: center;
+  justify-content: center;
+  background-color: #232324;
 }
 </style>

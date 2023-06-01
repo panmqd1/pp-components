@@ -1,3 +1,8 @@
+// 参考手册
+// https://lbs.amap.com/api/javascript-api-v2/documentation#markerclustergetmaxzoom
+// 示例
+// https://lbs.amap.com/demo/list/jsapi-v2
+
 export type Position = [number, number];
 type MarkerOptions = {
   position: Position;

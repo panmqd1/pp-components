@@ -1,11 +1,15 @@
 <template>
-  <div class="wrapper">
-    <div id="container"></div>
-    <div
-      id="generate"
-      class="info_window"
-      :class="{ show: infoWindowVisible }"
-    >
+  <div ref="mapWrapper" class="wrapper">
+    页面内容
+    <div ref="mapContainer" id="container">
+      <button class="btn_fullscreen1" @click="wrapperToggle">
+        {{ "切换" }}
+      </button>
+      <button class="btn_fullscreen2" @click="toggleWith">
+        {{ isFullscreen ? "退出" : "全屏" }}
+      </button>
+    </div>
+    <div id="generate" class="info_window" :class="{ show: infoWindowVisible }">
       <div class="info_title">
         <span>我是光伏站名称</span>
         <span>查看更多</span>
@@ -20,21 +24,7 @@
         </span>
       </div>
     </div>
-    <div id="stored" class="info_window" :class="{ show: infoWindowVisible }">
-      <div class="info_title">
-        <span>我是储能站名称</span>
-        <span>查看更多</span>
-      </div>
-      <div class="info_content">
-        <span class="content_item" v-for="(item, index) in 4" :key="index">
-          <span class="label">装机容量：</span>
-          <span class="value">
-            <span>{{ xxx }}</span>
-            <span class="unit">kWh</span>
-          </span>
-        </span>
-      </div>
-    </div>
+    <InfoWindow :infoWindowVisible="infoWindowVisible" />
     <div id="charge" class="info_window" :class="{ show: infoWindowVisible }">
       <div class="info_title">
         <span>我是充电站名称</span>
@@ -53,25 +43,50 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, shallowRef, onMounted } from "vue";
+import { ref, shallowRef, computed, onMounted } from "vue";
+import InfoWindow from "./InfoWindow.vue";
 import { type Position, useMap } from "/@/hooks/map";
 import AMapLoader from "@amap/amap-jsapi-loader";
+
+import { useFullscreen } from "@vueuse/core";
+
+const mapWrapper = ref(null);
+const mapContainer = ref(null);
+const { toggle: wrapperToggle } = useFullscreen();
+const { toggle, enter, exit, isFullscreen } = useFullscreen(mapContainer);
+
+const fullscreenElementKey = computed<'fullscreenElement' | undefined>(() => {
+  return [
+    'fullscreenElement',
+    'webkitFullscreenElement',
+    'mozFullScreenElement',
+    'msFullscreenElement',
+  ].find(m => (document && m in document)) as any
+})
+const toggleWith = () => {
+  toggle();
+  console.log('[ document[fullscreenKey] ] >', fullscreenElementKey.value && document[fullscreenElementKey.value])
+  const element = fullscreenElementKey.value ? document[fullscreenElementKey.value] : undefined
+  console.log('[ mapContainer.value == element ] >', mapContainer.value == element)
+};
 
 const map = shallowRef<any>(null);
 const AMap = shallowRef<any>(null);
 const initMap = async () => {
   try {
     AMap.value = await AMapLoader.load({
-      key: "e476092604a4efba8da3401b84e40ccc",
+      // key: "e476092604a4efba8da3401b84e40ccc",
+      key: 'c128930d7868fb90fb5dbe8f636803a1',
       version: "2.0",
       plugins: ["AMap.MarkerCluster"],
     });
     map.value = new AMap.value.Map("container", {
       center: [104.937478, 35.439575],
       zoom: 5,
-      mapStyle: "amap://styles/grey",
-      // mapStyle: "amap://styles/darkblue",
+      // mapStyle: "amap://styles/grey",
+      // mapStyle: "amap://styles/41addd8090103c5fbf45b33b099f4054",
     });
+    map.value.setMapStyle('amap://styles/41addd8090103c5fbf45b33b099f4054')
     map.value.clearMap(); // 清除地图覆盖物
     // 地图是否可拖拽和缩放
     map.value.setStatus({
@@ -116,7 +131,7 @@ const infoWindowVisible = ref(false);
 const closeInfoWindow = () => {
   map.value.clearInfoWindow();
 };
-const xxx = ref('123')
+const xxx = ref("123");
 const handlePointClick = (e: any) => {
   closeInfoWindow();
   console.log("[ e ] >", e);
@@ -128,8 +143,8 @@ const handlePointClick = (e: any) => {
   const lat = e.lnglat.getLat();
   // TODO 根据源数据判断类型, 取不同的id
   const id = clusterData.length > 1 ? "generate" : "stored";
-  xxx.value = clusterData.length > 1 ? '234' : '456'
-  const infoWindow: any = infoWindows.value[id]
+  xxx.value = clusterData.length > 1 ? "234" : "456";
+  const infoWindow: any = infoWindows.value[id];
   infoWindow.open(map.value, [lng, lat]);
 };
 const cluster = shallowRef<any>(null);
@@ -140,7 +155,7 @@ const addCluster = () => {
   cluster.value = new AMap.value.MarkerCluster(map.value, mockPoints, {
     gridSize: 60, // 设置网格像素大小
     renderClusterMarker: _renderClusterMarker, // 自定义聚合点样式
-    renderMarker: useMap(AMap.value, map.value).clusterRenderMarker,
+    // renderMarker: useMap(AMap.value, map.value).clusterRenderMarker,
   });
   cluster.value.on("click", handlePointClick);
 };
@@ -176,11 +191,29 @@ onMounted(() => {
   position: relative;
 }
 #container {
+  position: relative;
   padding: 0;
   margin: 0;
-  // width: 100%;
   width: 1400px;
+  // width: 100%;
   height: 1200px;
+  // height: 100%;
+  .btn_fullscreen1 {
+    position: absolute;
+    top: 10px;
+    right: 80px;
+    z-index: 999;
+    background-color: #fff;
+    color: #000;
+  }
+  .btn_fullscreen2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 999;
+    background-color: #fff;
+    color: #000;
+  }
 }
 
 .info_window {
