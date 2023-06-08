@@ -9,13 +9,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
-    ElRadioButton: typeof import('element-plus/es')['ElRadioButton']
-    ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    InfoWindow: typeof import('./src/components/InfoWindow.vue')['default']
-    MapContainer: typeof import('./src/components/MapContainer.vue')['default']
-    MaxtropyUI: typeof import('./src/components/MaxtropyUI.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
