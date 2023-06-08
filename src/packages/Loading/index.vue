@@ -13,6 +13,11 @@
     element-loading-background="rgba(0, 0, 0, 0.4)"
   ></div>
 </template>
+<script lang="ts">
+export default {
+  name: "Loading",
+};
+</script>
 <script setup lang="ts">
 import { ref, watch } from "vue";
 

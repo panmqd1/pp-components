@@ -15,7 +15,7 @@ import {
   IconifyIconOffline,
   IconifyIconOnline,
   FontIcon,
-} from "./components/ReIcon";
+} from "./packages/ReIcon";
 app.component("IconifyIconOffline", IconifyIconOffline);
 app.component("IconifyIconOnline", IconifyIconOnline);
 app.component("FontIcon", FontIcon);

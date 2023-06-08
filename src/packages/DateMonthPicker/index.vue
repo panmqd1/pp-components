@@ -21,6 +21,11 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "DateMonthPicker",
+};
+</script>
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
 import dayjs, { Dayjs } from "dayjs";

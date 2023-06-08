@@ -16,6 +16,11 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "ScreenBox",
+};
+</script>
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import {

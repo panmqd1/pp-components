@@ -1,10 +1,17 @@
 {
-  "name": "vue3business",
-  "private": true,
+  "name": "business-pan-components",
   "version": "0.0.0",
+  "author": "panmiaoqian",
+  "license": "ISC",
   "type": "module",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "files": [
+    "lib",
+    "es",
+    "README",
+    "LICENSE"
+  ],
   "scripts": {
     "dev": "vite --host",
     "build": "vue-tsc && vite build",
@@ -78,12 +85,7 @@
     "vue3"
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
-  },
-  "files": [
-    "lib",
-    "es",
-    "README",
-    "LICENSE"
-  ]
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  }
 }

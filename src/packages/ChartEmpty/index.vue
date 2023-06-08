@@ -4,6 +4,11 @@
     <div class="empty_text">{{ text }}</div>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "ChartEmpty",
+};
+</script>
 <script lang="ts" setup>
 const props = defineProps({
   text: {

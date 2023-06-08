@@ -28,6 +28,11 @@
   </div>
 </template>
 
+<script lang="ts">
+export default {
+  name: "EllipticTags",
+};
+</script>
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { TagType } from "./types";

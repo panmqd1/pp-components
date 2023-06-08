@@ -19,6 +19,11 @@
     </div>
   </div>
 </template>
+<script lang="ts">
+export default {
+  name: "WeekMonthPicker",
+};
+</script>
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
 import zhCn from "element-plus/lib/locale/lang/zh-cn";
