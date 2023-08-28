@@ -60,7 +60,7 @@ export default {
 <script setup lang="ts">
 import { computed } from "vue";
 import { CustomTableColumn } from "./types";
-import TableEmpty from "/@/components/TableEmpty/index.vue";
+import TableEmpty from "/@/packages/TableEmpty/index.vue";
 const props = defineProps({
   title: {
     type: String,

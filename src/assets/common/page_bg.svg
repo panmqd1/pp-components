@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1207px" height="712px" viewBox="0 0 1207 712" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>装饰轮廓</title>
+    <g id="页面规范" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.898447854">
+        <g id="微网风格切图" transform="translate(-23.000000, -242.000000)">
+            <g id="装饰轮廓" transform="translate(23.000000, 242.000000)">
+                <g id="装饰轮廓" transform="translate(0.000000, 1.000000)">
+                    <line x1="166.362159" y1="2" x2="1043.65522" y2="2" id="路径" stroke="#1A90FE" fill="#D8D8D8" stroke-linecap="round" stroke-dasharray="5.078683834048641"></line>
+                    <line x1="1204.81478" y1="125.758503" x2="1204.36102" y2="581.610963" id="路径" stroke="#1A90FE" fill="#D8D8D8" stroke-linecap="round" stroke-dasharray="5.078683834048641"></line>
+                    <line x1="1042.65403" y1="701.915271" x2="164.362997" y2="701.915271" id="路径" stroke="#1A90FE" fill="#D8D8D8" stroke-linecap="round" stroke-dasharray="5.078683834048641"></line>
+                    <line x1="2.86101695" y1="581.613894" x2="2.5" y2="125.5" id="路径" stroke="#1A90FE" fill="#D8D8D8" stroke-linecap="round" stroke-dasharray="5.078683834048641"></line>
+                    <g id="左下" transform="translate(0.361017, 579.113894)">
+                        <circle id="Oval-Copy-6" fill="#1A90FE" cx="2.5" cy="23.5" r="2.5"></circle>
+                        <circle id="Oval-Copy-6" fill="#1A90FE" cx="2.5" cy="2.5" r="2.5"></circle>
+                        <circle id="Oval-Copy-7" fill="#1A90FE" cx="163.867114" cy="122.851047" r="2.5"></circle>
+                        <circle id="Oval-Copy-7" fill="#1A90FE" cx="142.395011" cy="122.851047" r="2.5"></circle>
+                        <polyline id="Path" stroke="#1A90FE" stroke-linecap="round" stroke-linejoin="round" points="141.987286 122.775949 94.1614047 122.775949 87.2044777 129.886106 73.5892018 129.886106 64.5631109 122.775949 28.4436522 122.775949 12.2862845 122.775949 2.5 114.886106 2.5 23.5"></polyline>
+                        <rect id="矩形" fill="#1A90FE" x="59.4209369" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份" fill="#1A90FE" x="53.3243268" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-2" fill="#1A90FE" x="47.2277166" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-3" fill="#1A90FE" x="41.1311064" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-4" fill="#1A90FE" x="35.0344963" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                    </g>
+                    <g id="右下" transform="translate(1123.544574, 644.056947) scale(-1, 1) translate(-1123.544574, -644.056947) translate(1040.361017, 579.113894)">
+                        <circle id="Oval-Copy-6" fill="#1A90FE" cx="2.53449626" cy="23.1307229" r="2.5"></circle>
+                        <circle id="Oval-Copy-6" fill="#1A90FE" cx="2.5" cy="2.5" r="2.5"></circle>
+                        <circle id="Oval-Copy-7" fill="#1A90FE" cx="163.867114" cy="122.851047" r="2.5"></circle>
+                        <circle id="Oval-Copy-7" fill="#1A90FE" cx="142.395011" cy="122.851047" r="2.5"></circle>
+                        <polyline id="Path" stroke="#1A90FE" stroke-linecap="round" stroke-linejoin="round" points="141.987286 122.775949 94.1614047 122.775949 87.2044777 129.886106 73.5892018 129.886106 64.5631109 122.775949 28.4436522 122.775949 12.2862845 122.775949 2.03449626 113.555634 2.03449626 23.0084145"></polyline>
+                        <rect id="矩形" fill="#1A90FE" x="59.4209369" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份" fill="#1A90FE" x="53.3243268" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-2" fill="#1A90FE" x="47.2277166" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-3" fill="#1A90FE" x="41.1311064" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                        <rect id="矩形备份-4" fill="#1A90FE" x="35.0344963" y="125.008414" width="4.06440678" height="4.06294707"></rect>
+                    </g>
+                    <g id="左上" transform="translate(83.000000, 64.000000) scale(-1, 1) translate(-83.000000, -64.000000) ">
+                        <polyline id="Rectangle" stroke="#1A90FE" stroke-linecap="round" stroke-linejoin="round" points="23.6432749 2.16643057 153.507909 2.20759297 163.138983 12 163.5 104.5"></polyline>
+                        <circle id="Oval-Copy" fill="#1A90FE" cx="23.4822034" cy="2.5" r="2.5"></circle>
+                        <path d="M163.5,107 C164.880712,107 166,105.880712 166,104.5 C166,103.119288 164.880712,102 163.5,102 C162.119288,102 161,103.119288 161,104.5 C161,105.880712 162.119288,107 163.5,107 Z" id="Oval-Copy-2" fill="#1A90FE"></path>
+                        <circle id="Oval-Copy-2备份" fill="#1A90FE" cx="163.5" cy="125.5" r="2.5"></circle>
+                        <circle id="Oval备份" fill="#1A90FE" cx="2.5" cy="2.5" r="2.5"></circle>
+                    </g>
+                    <g id="右上" transform="translate(1041.361017, 0.000000)">
+                        <polyline id="Rectangle" stroke="#1A90FE" stroke-linecap="round" stroke-linejoin="round" points="23.6432749 2.16643057 153.005027 2.16643057 163.138983 11.5546533 163.138983 104.86123"></polyline>
+                        <circle id="Oval-Copy" fill="#1A90FE" cx="23.4822034" cy="2.5" r="2.5"></circle>
+                        <path d="M163.138983,106.905579 C164.519695,106.905579 165.638983,105.786291 165.638983,104.405579 C165.638983,103.024868 164.519695,101.905579 163.138983,101.905579 C161.758271,101.905579 160.638983,103.024868 160.638983,104.405579 C160.638983,105.786291 161.758271,106.905579 163.138983,106.905579 Z" id="Oval-Copy-2" fill="#1A90FE"></path>
+                        <circle id="Oval-Copy-2备份" fill="#1A90FE" cx="163.138983" cy="125.405579" r="2.5"></circle>
+                        <circle id="Oval备份" fill="#1A90FE" cx="2.5" cy="2.5" r="2.5"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

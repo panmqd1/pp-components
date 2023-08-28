@@ -122,6 +122,7 @@ const setWidthAndScale = () => {
     screenContent.value.style["width"] = `${baseWidth}px`;
     screenContent.value.style["height"] = `${baseHeight}px`;
     screenContent.value.style["transform"] = `scale(${scale})`;
+    // @ts-ignore
     screenContent.value.style["-webkit-transform"] = `scale(${scale})`;
   }
   if (screenWrapper.value) {
