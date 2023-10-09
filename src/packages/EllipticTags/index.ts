@@ -1,8 +1,8 @@
 import { withInstall } from "/@/utils";
 import comp from "./index.vue";
 
-export const BorderWrapper = withInstall(comp);
+export const EllipticTags = withInstall(comp);
 
-export default BorderWrapper;
+export default EllipticTags;
 
 export * from "./";

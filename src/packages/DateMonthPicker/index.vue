@@ -28,7 +28,9 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
+import { RangePicker as ARangePicker } from '@arco-design/web-vue';
 import dayjs, { Dayjs } from "dayjs";
+import '@arco-design/web-vue/es/date-picker/style/css.js';
 
 type RangeType = [string, string] | [string] | [];
 

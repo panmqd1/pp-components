@@ -1,8 +1,8 @@
 import { withInstall } from "/@/utils";
 import comp from "./index.vue";
 
-export const BorderWrapper = withInstall(comp);
+export const DateMonthPicker = withInstall(comp);
 
-export default BorderWrapper;
+export default DateMonthPicker;
 
 export * from "./";

@@ -1,14 +1,16 @@
 import type { App } from "vue";
-import BorderWrapper from "./BorderWrapper/index.vue";
-import ChartEmpty from "./ChartEmpty/index.vue";
-import CustomTable from "./CustomTable/index.vue";
-import DateMonthPicker from "./DateMonthPicker/index.vue";
-import EllipticTags from "./EllipticTags/index.vue";
-import Loading from "./Loading/index.vue";
+import BorderWrapper from "./BorderWrapper";
+import ChartEmpty from "./ChartEmpty";
+import CustomTable from "./CustomTable";
+import DateMonthPicker from "./DateMonthPicker";
+import EllipticTags from "./EllipticTags";
+import Loading from "./Loading";
 import { IconifyIconOffline, IconifyIconOnline, FontIcon } from "./ReIcon";
-import ScreenBox from "./ScreenBox/index.vue";
-import TableEmpty from "./TableEmpty/index.vue";
-import WeekMonthPicker from "./WeekMonthPicker/index.vue";
+import ScreenBox from "./ScreenBox";
+import TableEmpty from "./TableEmpty";
+import WeekMonthPicker from "./WeekMonthPicker";
+
+export type { TagType } from "./EllipticTags/types";
 
 const componentList = [
   BorderWrapper,
@@ -24,6 +26,8 @@ const componentList = [
   TableEmpty,
   WeekMonthPicker,
 ];
+
+console.log('[ IconifyIconOffline.name ] >', IconifyIconOffline.name)
 
 // 按需导出
 export {
