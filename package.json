@@ -88,5 +88,8 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
+  },
+  "volta": {
+    "node": "16.20.2"
   }
 }
