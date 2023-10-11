@@ -31,6 +31,7 @@ import { ref, computed, watch, onMounted } from "vue";
 import { RangePicker as ARangePicker } from "@arco-design/web-vue";
 import dayjs, { Dayjs } from "dayjs";
 import "@arco-design/web-vue/es/date-picker/style/css.js";
+import { CalendarValue } from "@arco-design/web-vue/es/date-picker/interface";
 
 type RangeType = [string, string] | [string] | [];
 
@@ -125,9 +126,9 @@ const disabledDate = (current: Date) => {
 const calendarRange = ref<RangeType>();
 
 // 选中日期发生改变但组件值未改变
-const onSelect = (val: RangeType) => {
+const onSelect = (val: (CalendarValue | undefined)[]) => {
   console.log("[ val ] >", val);
-  calendarRange.value = val;
+  calendarRange.value = val as RangeType;
 };
 
 // 打开或关闭弹出框
