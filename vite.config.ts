@@ -20,7 +20,7 @@ export default defineConfig({
     outDir: "dist",
     minify: false,
     rollupOptions: {
-      external: ["vue", "element-plus"],
+      external: ["vue", "element-plus", "@arco-design/web-vue"],
     },
     lib: {
       entry: "src/packages/index.ts",

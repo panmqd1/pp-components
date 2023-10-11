@@ -27,8 +27,6 @@ const componentList = [
   WeekMonthPicker,
 ];
 
-console.log('[ IconifyIconOffline.name ] >', IconifyIconOffline.name)
-
 // 按需导出
 export {
   BorderWrapper,
