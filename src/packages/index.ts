@@ -9,6 +9,8 @@ import { IconifyIconOffline, IconifyIconOnline, FontIcon } from "./ReIcon";
 import ScreenBox from "./ScreenBox";
 import TableEmpty from "./TableEmpty";
 import WeekMonthPicker from "./WeekMonthPicker";
+// TODO 文件预览组件
+// 图片、word、excel、pdf
 
 export type { TagType } from "./EllipticTags/types";
 

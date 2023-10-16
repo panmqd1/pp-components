@@ -17,7 +17,11 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext '.js,.ts' --fix",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "docs": "npm run build && npm run docs:dev",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "husky": {
     "hooks": {
@@ -78,6 +82,7 @@
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.2.0",
     "vite-svg-loader": "^4.0.0",
+    "vitepress": "^1.0.0-rc.22",
     "vue-eslint-parser": "^9.1.1",
     "vue-tsc": "^1.2.0"
   },
@@ -90,6 +95,6 @@
     "access": "public"
   },
   "volta": {
-    "node": "16.20.2"
+    "node": "18.18.2"
   }
 }

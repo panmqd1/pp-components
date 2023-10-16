@@ -14,14 +14,18 @@ export default {
 </script>
 <script lang="ts" setup>
 const props = defineProps({
+  outMinHeight: {
+    type: String,
+    default: "calc(100vh - 110px)",
+  },
   innerMinHeight: {
     type: String,
-    default: 'calc(100vh - 146px)',
+    default: "calc(100vh - 146px)",
   },
   innerBackground: {
     type: String,
-    default: '#232324',
-  }
+    default: "#232324",
+  },
 });
 </script>
 <style lang="scss" scoped>
@@ -32,7 +36,7 @@ const props = defineProps({
 
 .border-wrapper {
   width: 100%;
-  min-height: calc(100vh - 110px);
+  min-height: v-bind(outMinHeight);
   border-image-repeat: repeat;
   border-image-slice: 140 180;
   border-image-source: url("/@/assets/common/page_bg.svg");
