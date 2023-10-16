@@ -5,12 +5,12 @@ layout: home
 hero:
   name: "PP-Components"
   actions:
-    - theme: brand
-      text: Components Examples
-      link: /components-examples
     - theme: alt
-      text: API Examples
-      link: /api-examples
+      text: Update Logs
+      link: /update-logs
+    - theme: brand
+      text: Components
+      link: /components/border-wrapper
 
 features:
   - title: ScreenBox
