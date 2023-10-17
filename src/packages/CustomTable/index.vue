@@ -31,7 +31,7 @@
               <span class="cell f_ellipsis" :class="item.prop">
                 <span
                   v-if="item.operationText"
-                  :style="{ cursor: 'pointer' }"
+                  :style="{ cursor: 'pointer', userSelect: 'none' }"
                   @click="item.operateFn?.(row)"
                   >{{ item.operationText }}</span
                 >

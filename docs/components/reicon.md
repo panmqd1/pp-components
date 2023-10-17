@@ -1,41 +1,55 @@
-# 边框容器 BorderWrapper
+# 图标 IconifyIconOnline / IconifyIconOffline
 
-用于创建一个附带边框的容器, 由于border-image原因, 边框样式不可变
+在线图标和离线图标
 
-## 基本用法
+::: warning 图标请求地址
+在线图标走的请求地址是 https://api.iconify.design，第一次加载会走接口，然后默认将图标文件存入 localstorage ，之后加载图标走 localstorage
+:::
 
-直接使用, 宽度撑满, 高度需要一个固定值, 否则为 100vh - 110px
+## 在线图标
 
-```js{4}
-<BorderWrapper>
-  <slot />
-</BorderWrapper>
+在[icones](https://icones.js.org/)找到所需的图标，复制名称放到 icon 属性里就行;宽高默认 14px;
+
+```js
+<IconifyIconOnline
+  icon="svg-spinners:blocks-wave"
+/>
+<IconifyIconOnline
+  icon="ant-design:fullscreen-exit-outlined"
+  color="red"
+  width="18px"
+  height="18px"
+/>
+<IconifyIconOnline
+  icon="ep:bell-filled"
+  color="#2bd0d7"
+  width="32px"
+  height="32px"
+/>
 ```
 
-<BorderWrapper>123</BorderWrapper>
-
-## 附带内容背景和高度控制
-
-直接使用
-
-```js{4}
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">
-  <slot />
-</BorderWrapper>
-```
-
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">123</BorderWrapper>
+<IconifyIconOnline
+  icon="svg-spinners:blocks-wave"
+/>
+<IconifyIconOnline
+  icon="ant-design:fullscreen-exit-outlined"
+  color="red"
+  width="18px"
+  height="18px"
+/>
+<IconifyIconOnline
+  icon="ep:bell-filled"
+  color="#2bd0d7"
+  width="32px"
+  height="32px"
+/>
 
 ## API
 
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| outMinHeight | 整体最小高度 | string | calc(100vh - 110px) |
-| innerMinHeight | 内部最小高度, 会撑开整体 | string | calc(100vh - 146px) |
-| innerBackground | 内部背景颜色 | string | #232324 |
-
-**Slots**
-| 插槽名 | 描述 | 参数 |
-| ------------- | :-----------: | ----: |
-| default | 默认插槽 | - |
+| icon | 图标名称 | string | - |
+| color | 图标颜色 | string | - |
+| width | 宽度 | string | 14px |
+| height | 高度 | string | 14px |

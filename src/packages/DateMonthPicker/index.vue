@@ -40,11 +40,6 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
-  // 切换按日按月是否要重置已选的日期
-  resetDate: {
-    type: Boolean,
-    default: true,
-  },
   // 允许选择的结束日期
   allowEndDate: {
     type: Dayjs,
@@ -57,9 +52,6 @@ const dateModeType = computed(() => {
   return dateMode.value === "day" ? "date" : "month";
 });
 const handleDateModeChange = () => {
-  if (props.resetDate) {
-    dateRange.value = [] as any;
-  }
   if (dateMode.value === "day") {
     setDefaultDay();
   } else if (dateMode.value === "month") {

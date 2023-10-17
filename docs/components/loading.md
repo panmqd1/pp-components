@@ -1,41 +1,44 @@
-# 边框容器 BorderWrapper
+# 自定义加载中 Loading
 
-用于创建一个附带边框的容器, 由于border-image原因, 边框样式不可变
+element-plus 自定义加载样式, 暂时是以组件形式, 后期优化为函数式调用
+
+<script setup>
+import {ref} from 'vue'
+
+const loading = ref(false)
+
+const handleLoading = () => {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 2000)
+}
+</script>
 
 ## 基本用法
 
-直接使用, 宽度撑满, 高度需要一个固定值, 否则为 100vh - 110px
+将组件挂载在最外层, loading用状态管理来控制
 
 ```js{4}
-<BorderWrapper>
-  <slot />
-</BorderWrapper>
+<el-button @click="handleLoading">加载</el-button>
+<Loading :loading="loading" />
+
+const loading = ref(false)
+
+const handleLoading = () => {
+  loading.value = true
+  setTimeout(() => {
+    loading.value = false
+  }, 2000)
+}
 ```
 
-<BorderWrapper>123</BorderWrapper>
-
-## 附带内容背景和高度控制
-
-直接使用
-
-```js{4}
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">
-  <slot />
-</BorderWrapper>
-```
-
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">123</BorderWrapper>
+<el-button @click="handleLoading">加载</el-button>
+<Loading :loading="loading" />
 
 ## API
 
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| outMinHeight | 整体最小高度 | string | calc(100vh - 110px) |
-| innerMinHeight | 内部最小高度, 会撑开整体 | string | calc(100vh - 146px) |
-| innerBackground | 内部背景颜色 | string | #232324 |
-
-**Slots**
-| 插槽名 | 描述 | 参数 |
-| ------------- | :-----------: | ----: |
-| default | 默认插槽 | - |
+| loading | 是否加载中 | boolean | false |

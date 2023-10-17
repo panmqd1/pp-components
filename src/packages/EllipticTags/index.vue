@@ -49,7 +49,7 @@ const props = defineProps({
   },
   closable: {
     type: Boolean,
-    default: true,
+    default: false,
   }
 });
 

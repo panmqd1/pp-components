@@ -1,41 +1,60 @@
-# 边框容器 BorderWrapper
+# 日期月份切换选择 DateMonthPicker
 
-用于创建一个附带边框的容器, 由于border-image原因, 边框样式不可变
+::: danger 重要!
+截至2.4.0, el-date-picker中, calendar-change事件仅在type为date和datetime时触发, 因此使用arco-design实现
+:::
+
+::: warning 注意
+组件附带基础样式, 需要在element和arco同时使用暗黑模式时达到最佳效果
+:::
+选择一段时间, 可以按日期或按月份选择
+
+<script setup>
+import {ref} from 'vue'
+import { useDark } from "@vueuse/core";
+import dayjs from 'dayjs'
+// element-plus设置暗黑模式
+useDark({
+  initialValue: "dark",
+});
+// arco-design设置暗黑模式
+useDark({
+  selector: "body",
+  attribute: "arco-theme",
+  initialValue: "dark",
+});
+
+const date2 = ref([])
+const dateMode2 = ref('month')
+</script>
 
 ## 基本用法
 
-直接使用, 宽度撑满, 高度需要一个固定值, 否则为 100vh - 110px
+直接使用, 按日默认选择最近 31 天(不包含今天), 选择范围 1-31 天; 按月默认选择最近 12 月(包含本月), 选择范围 1-12 月
 
 ```js{4}
-<BorderWrapper>
-  <slot />
-</BorderWrapper>
+<DateMonthPicker />
 ```
 
-<BorderWrapper>123</BorderWrapper>
+<DateMonthPicker />
 
-## 附带内容背景和高度控制
+## 隐藏文字, 限制选择结束时间
 
-直接使用
+v-model, 但不接受外部直接传值
 
 ```js{4}
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">
-  <slot />
-</BorderWrapper>
+<DateMonthPicker :showLabel="false" allowEndDate="2022-10-01" />
 ```
-
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">123</BorderWrapper>
+<div>当前模式: {{ dateMode2 }}</div>
+<div>当前值: {{ date2 }}</div>
+<DateMonthPicker v-model:date="date2" v-model:dateMode="dateMode2" :showLabel="false" allowEndDate="2022-10-01" />
 
 ## API
 
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| outMinHeight | 整体最小高度 | string | calc(100vh - 110px) |
-| innerMinHeight | 内部最小高度, 会撑开整体 | string | calc(100vh - 146px) |
-| innerBackground | 内部背景颜色 | string | #232324 |
-
-**Slots**
-| 插槽名 | 描述 | 参数 |
-| ------------- | :-----------: | ----: |
-| default | 默认插槽 | - |
+| date (v-model) | 选择的时间 | [string, string] | [dayjs(allowEndDate).subtract(11, "month").format('YYYY-MM-DD'), dayjs(allowEndDate).format('YYYY-MM-DD')] |
+| dateMode (v-model) | 选择的模式 | string | month |
+| showLabel | 是否显示"选择日期" | boolean | true |
+| allowEndDate | 允许选择的结束日期 | Dayjs / string | dayjs().subtract(1, "day") |

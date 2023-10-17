@@ -60,6 +60,14 @@ const data1 = new Array(5).fill(undefined).map((_, index) => {
 })
 </script>
 
+## 基本用法
+
+直接使用, 传入 columns 和 data
+
+```js{4}
+<CustomTable :tableColumns="columns1" :tableData="data1" />
+```
+
 ::: details 查看源代码
 
 ```js
@@ -102,13 +110,13 @@ const columns1 = [
     },
     style: {
       ...columnBaseStyle,
-      color: '#f12'
+      color: "#f12",
     },
     // 优先级最高
-    operationText: '点击单元格',
+    operationText: "点击单元格",
     operateFn: (row) => {
-      console.log(row)
-    }
+      console.log(row);
+    },
   },
 ];
 const data1 = new Array(5).fill(undefined).map((_, index) => {
@@ -121,14 +129,6 @@ const data1 = new Array(5).fill(undefined).map((_, index) => {
 ```
 
 :::
-
-## 基本用法
-
-直接使用, 传入 columns 和 data
-
-```js{4}
-<CustomTable :tableColumns="columns1" :tableData="data1" />
-```
 
 <CustomTable :tableColumns="columns1" :tableData="data1" />
 
