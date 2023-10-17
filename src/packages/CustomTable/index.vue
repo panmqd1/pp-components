@@ -8,7 +8,7 @@
           :class="'header-' + item.prop"
           v-for="(item, index) in tableColumns"
           :key="index"
-          :style="{ width: item.width }"
+          :style="{ width: item.width, ...item.headerStyle }"
         >
           <span class="f_ellipsis">{{ item.label }}</span>
         </span>
@@ -17,7 +17,7 @@
         <el-scrollbar>
           <div
             class="table_row_item"
-            :class="`rank_${index + 1}`"
+            :class="getRankClass(index)"
             v-for="(row, index) in tableData"
             :key="index"
           >
@@ -31,6 +31,7 @@
               <span class="cell f_ellipsis" :class="item.prop">
                 <span
                   v-if="item.operationText"
+                  :style="{ cursor: 'pointer' }"
                   @click="item.operateFn?.(row)"
                   >{{ item.operationText }}</span
                 >
@@ -84,7 +85,15 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  showRank: {
+    type: Boolean,
+    default: true,
+  },
 });
+
+const getRankClass = (index: number) => {
+  return props.showRank ? `rank_${index + 1}` : "";
+};
 
 // 是否显示table空状态
 const isShowTableEmpty = computed(() => {

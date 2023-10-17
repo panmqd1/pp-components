@@ -3,6 +3,7 @@ export type CustomTableColumn = {
   prop: string;
   width?: string;
   showOverflowTooltip?: boolean;
+  headerStyle?: object;
   style?: object;
   operationText?: string;
   operateFn?: (row: any) => void;
