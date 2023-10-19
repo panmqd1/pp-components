@@ -36,34 +36,15 @@ jobs:
       # 3 安装依赖
       - run: npm run clean:cache
       
-      # 4 构建项目
-      - run: npm run build
+      # 4 构建项目 (构建文档)
+      - run: npm run docs:build:oneKey
       
       # 5 上传构建产物 (actions/upload-artifact@v3 会上传工作流程中的文件, 允许您在作业之间共享数据并在工作流程完成后存储数据)
       - uses: actions/upload-pages-artifact@v2
         with:
-          path: "./dist"
+          path: "./docs/.vitepress/dist"
 
       # 6 部署 Github Pages
       - uses: actions/deploy-pages@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          
-  # deploy:
-  #   needs: build
-
-  #   permissions:
-  #     pages: write
-  #     id-token: write
-    
-  #   environment:
-  #     name: github-pages
-  #     url: ${{ steps.deployment.outputs.page_url }}
-
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Deploy to GitHub Pages
-  #     id: deployment
-  #     uses: actions/deploy-pages@v2
-  #     with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}

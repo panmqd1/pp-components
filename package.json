@@ -23,7 +23,8 @@
     "docs": "npm run build && npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "docs:build:oneKey": "npm run build && vitepress build docs"
   },
   "husky": {
     "hooks": {
