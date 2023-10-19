@@ -14,15 +14,16 @@
   ],
   "scripts": {
     "dev": "vite --host",
+    "clean:cache": "rm -rf node_modules && rm -rf .eslintcache && npm install",
     "build": "vue-tsc && vite build",
+    "build:oneKey": "npm run clean:cache && npm run build",
     "preview": "vite preview",
     "lint": "eslint . --ext '.js,.ts' --fix",
     "precommit": "lint-staged",
     "docs": "npm run build && npm run docs:dev",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "clean:cache": "rm -rf node_modules && rm -rf .eslintcache && npm install"
+    "docs:preview": "vitepress preview docs"
   },
   "husky": {
     "hooks": {
@@ -46,7 +47,7 @@
     "@vueuse/shared": "^9.13.0",
     "dayjs": "^1.11.7",
     "echarts": "^5.4.2",
-    "element-plus": "~2.3.3",
+    "element-plus": "~2.4.0",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.3",

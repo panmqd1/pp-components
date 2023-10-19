@@ -26,7 +26,11 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
-import zhCn from "element-plus/lib/locale/lang/zh-cn";
+// !! 2.3.7及以前的用法
+// import zhCn from "element-plus/lib/locale/lang/zh-cn";
+// !! 2.3.8及以后的用法
+// @ts-ignore
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { dayjs } from "element-plus";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
