@@ -31,7 +31,7 @@ jobs:
           node-version: 18
 
       # 3 安装依赖
-      - run: npm install
+      - run: npm run clean:cache
       
       # 4 构建项目
       - run: npm run build
