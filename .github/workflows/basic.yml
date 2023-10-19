@@ -45,3 +45,9 @@ jobs:
       - uses: actions/deploy-pages@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    needs: build
+
+    permissions:
+      pages: write
+      id-token: write
