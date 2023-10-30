@@ -1,41 +1,33 @@
-# 边框容器 BorderWrapper
+# 日期月份切换选择 WeekMonthPicker
 
-用于创建一个附带边框的容器, 由于border-image原因, 边框样式不可变
+选择一周或一个月, 周是周一 ~ 周日
+如果当日是周第一天和月第一天，不允许选择。如果不是，可以选择，只计算周第一天到当日前一日的数据，月第一天到当日前一日的数据。
+默认选择上周
+
+<script setup>
+import {ref} from 'vue'
+
+const date2 = ref([])
+const dateMode2 = ref('month')
+</script>
 
 ## 基本用法
 
-直接使用, 宽度撑满, 高度需要一个固定值, 否则为 100vh - 110px
+v-model, 但不接受外部直接传值
 
-```js{4}
-<BorderWrapper>
-  <slot />
-</BorderWrapper>
+```js
+<WeekMonthPicker v-model:date="date2" v-model:dateMode="dateMode2" />
 ```
 
-<BorderWrapper>123</BorderWrapper>
-
-## 附带内容背景和高度控制
-
-直接使用
-
-```js{4}
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">
-  <slot />
-</BorderWrapper>
-```
-
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">123</BorderWrapper>
+<div>当前模式: {{ dateMode2 }}</div>
+<div>当前值: {{ date2 }}</div>
+<WeekMonthPicker v-model:date="date2" v-model:dateMode="dateMode2" :showLabel="false" />
 
 ## API
 
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| outMinHeight | 整体最小高度 | string | calc(100vh - 110px) |
-| innerMinHeight | 内部最小高度, 会撑开整体 | string | calc(100vh - 146px) |
-| innerBackground | 内部背景颜色 | string | #232324 |
-
-**Slots**
-| 插槽名 | 描述 | 参数 |
-| ------------- | :-----------: | ----: |
-| default | 默认插槽 | - |
+| date (v-model) | 选择的时间 | [string, string] | [dayjs().weekday(-7).format("YYYY-MM-DD"), dayjs().weekday(-1).format("YYYY-MM-DD")] |
+| dateMode (v-model) | 选择的模式 | string | week |
+| showLabel | 是否显示"统计时间" | boolean | true |

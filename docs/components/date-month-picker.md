@@ -12,7 +12,6 @@
 <script setup>
 import {ref} from 'vue'
 import { useDark } from "@vueuse/core";
-import dayjs from 'dayjs'
 // element-plus设置暗黑模式
 useDark({
   initialValue: "dark",

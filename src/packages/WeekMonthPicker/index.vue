@@ -1,6 +1,6 @@
 <template>
   <div class="week_month_picker">
-    <span class="label">统计时间：</span>
+    <span v-show="showLabel" class="label">统计时间：</span>
     <el-radio-group v-model="dateMode" @change="handleDateModeChange">
       <el-radio label="week">周</el-radio>
       <el-radio label="month">月</el-radio>
@@ -26,28 +26,27 @@ export default {
 </script>
 <script setup lang="ts">
 import { ref, computed, watch, onMounted } from "vue";
-// !! 2.3.7及以前的用法
-// import zhCn from "element-plus/lib/locale/lang/zh-cn";
-// !! 2.3.8及以后的用法
-// @ts-ignore
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import { dayjs } from "element-plus";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import weekday from "dayjs/plugin/weekday";
-import 'dayjs/locale/zh-cn'
+// @ts-ignore
+import zhCn from "element-plus/dist/locale/zh-cn.mjs";
+import "dayjs/locale/zh-cn";
+
+dayjs.locale("zh-cn");
+// 设置周起始日
+// @ts-ignore
+dayjs().$locale().weekStart = 1;
 dayjs.extend(weekOfYear);
+// NOTE 如果本地化配置了星期天作为一周的第一天, dayjs().weekday(0)将返回星期天
 dayjs.extend(weekday);
-// TODO 周起始日没设置好
-// dayjs["en"].weekStart = 1;
-// dayjs.locale('zh-cn')
 
 const locale = computed(() => {
-  return zhCn
-})
+  return zhCn;
+});
 
 const props = defineProps({
-  // 切换按日按月是否要重置已选的日期
-  resetDate: {
+  showLabel: {
     type: Boolean,
     default: true,
   },
@@ -72,50 +71,51 @@ const dateModeTypeFormat = computed(() => {
   return `${weekOfYearStr}（${rangeStr}）`;
 });
 /**
- * 
- * @param time 
+ *
+ * @param time
  * 如果当日是周第一天和月第一天，不允许选择。如果不是，可以选择，只计算周第一天到当日前一日的数据，月第一天到当日前一日的数据。
  */
 const disabledDate = (time: Date) => {
   // 本周一
-  const currentMonday = dayjs().weekday(0).format('YYYY-MM-DD');
+  const currentMonday = dayjs().weekday(0).format("YYYY-MM-DD");
   // 本周日
-  const currentSunday = dayjs().weekday(6).format('YYYY-MM-DD');
+  const currentSunday = dayjs().weekday(6).format("YYYY-MM-DD");
   // 上周日
-  const lastSunday = dayjs(currentMonday).subtract(1, 'day').format('YYYY-MM-DD');
+  const lastSunday = dayjs(currentMonday)
+    .subtract(1, "day")
+    .format("YYYY-MM-DD");
   // 本月一号
-  const currentDay1 = dayjs().date(1).format('YYYY-MM-DD');
+  const currentDay1 = dayjs().date(1).format("YYYY-MM-DD");
   // 上月最后一天
-  const lastMonthLastDay = dayjs(currentDay1).subtract(1, 'day').format('YYYY-MM-DD');
+  const lastMonthLastDay = dayjs(currentDay1)
+    .subtract(1, "day")
+    .format("YYYY-MM-DD");
 
   // 可以选择的最后一天
-  let allowDate = ''
+  let allowDate = "";
   // 按周
-  if (dateMode.value === 'week' ) {
+  if (dateMode.value === "week") {
     // 如果今天是周一, 最多选择到上周日
     // 否则, 最多选择到本周日
-    if (dayjs().isSame(currentMonday, 'day')) {
-      allowDate = lastSunday
+    if (dayjs().isSame(currentMonday, "day")) {
+      allowDate = lastSunday;
     } else {
-      allowDate = currentSunday
+      allowDate = currentSunday;
     }
-  } else if (dateMode.value === 'month') {
+  } else if (dateMode.value === "month") {
     // 如果今天是本月一号, 最多选择到上月
     // 否则, 最多选择到本月
-    if (dayjs().isSame(currentDay1, 'day')) {
-      allowDate = lastMonthLastDay
+    if (dayjs().isSame(currentDay1, "day")) {
+      allowDate = lastMonthLastDay;
     } else {
-      allowDate = dayjs().format('YYYY-MM-DD')
+      allowDate = dayjs().format("YYYY-MM-DD");
     }
   }
   // 本周一和本月一号及以后禁止选择
   const flag = dayjs(time).isAfter(dayjs(allowDate), dateMode.value);
-  return flag
-}
+  return flag;
+};
 const handleDateModeChange = () => {
-  if (props.resetDate) {
-    dateValue.value = "";
-  }
   if (dateMode.value === "week") {
     setDefaultWeek();
   } else if (dateMode.value === "month") {
@@ -131,7 +131,7 @@ const setDefaultWeek = () => {
 };
 // 默认为本月
 const setDefaultMonth = () => {
-  dateValue.value = dayjs().subtract(1, 'month').format("YYYY-MM");
+  dateValue.value = dayjs().subtract(1, "month").format("YYYY-MM");
 };
 onMounted(() => {
   setDefaultWeek();
@@ -159,6 +159,7 @@ watch(
       end,
     };
     emits("change", result);
+    emits("update:date", [start, end]);
   }
 );
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="table_empty">
+  <div class="table_empty" :style="{ width, height }">
     <div class="img_container" :class="isWarning ? 'warning' : ''"></div>
     <div class="empty_text">{{ text }}</div>
   </div>
@@ -15,6 +15,14 @@ defineProps({
     type: String,
     default: "暂无数据",
   },
+  width: {
+    type: String,
+    default: "100%",
+  },
+  height: {
+    type: String,
+    default: "100%",
+  },
   isWarning: {
     type: Boolean,
     default: false
@@ -28,7 +36,7 @@ defineProps({
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 300px;
+  height: 100%;
   font-size: 14px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);

@@ -3,7 +3,7 @@
     <div class="screen_wrapper" ref="screenWrapper">
       <div class="screen_content" ref="screenContent">
         <el-icon
-          v-if="!isFullscreenOutside && !isFullscreenControlled"
+          v-if="showFullscreen"
           class="btn_fullscreen"
           :size="designFontSize"
           color="#FFFFFF"
@@ -47,12 +47,13 @@ const props = defineProps({
     type: String,
     default: "14px",
   },
-  // 是否外部控制全屏
-  isFullscreenOutside: {
+  // 是否显示全屏icon
+  showFullscreen: {
     type: Boolean,
     default: false,
   },
-  isFullscreenControlled: {
+  // 外部传入控制全屏的变量
+  outsideIsFullscreen: {
     type: Boolean,
     default: false,
   },
@@ -67,7 +68,7 @@ const heightRatio = computed(() => {
   return +(props.designHeight / props.designWidth).toFixed(4);
 });
 
-const emit = defineEmits(["update:isFullscreenControlled"]);
+const emit = defineEmits(["update:outsideIsFullscreen"]);
 
 const screenWrapperBackground = ref<HTMLElement>();
 const screenWrapper = ref<HTMLElement>();
@@ -78,9 +79,9 @@ const { toggle, enter, exit, isFullscreen } = useFullscreen(
   screenWrapperBackground
 );
 watch(
-  () => props.isFullscreenControlled,
+  () => props.outsideIsFullscreen,
   () => {
-    if (props.isFullscreenControlled) {
+    if (props.outsideIsFullscreen) {
       enter();
     } else {
       exit();
@@ -92,7 +93,7 @@ watch(
 watch(
   () => isFullscreen.value,
   () => {
-    emit("update:isFullscreenControlled", isFullscreen.value);
+    emit("update:outsideIsFullscreen", isFullscreen.value);
   }
 );
 

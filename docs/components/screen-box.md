@@ -1,39 +1,59 @@
-# 边框容器 BorderWrapper
+# 缩放盒子 ScreenBox
 
-用于创建一个附带边框的容器, 由于border-image原因, 边框样式不可变
+一个自适应容器, 内部始终维持固定的宽高比
+
+<script setup>
+import {ref} from 'vue'
+
+const outsideFullScreen = ref(false)
+const handleFullScreen = () => {
+  outsideFullScreen.value = !outsideFullScreen.value
+}
+
+</script>
 
 ## 基本用法
 
-直接使用, 宽度撑满, 高度需要一个固定值, 否则为 100vh - 110px
+默认宽高1920*1080, 可以自由传入宽高, 内部会始终维持这个宽高比, 多余部分以#1c2023填充
 
-```js{4}
-<BorderWrapper>
-  <slot />
-</BorderWrapper>
+```js
+<script setup>
+import {ref} from 'vue'
+
+const outsideFullScreen = ref(false)
+const handleFullScreen = () => {
+  outsideFullScreen.value = !outsideFullScreen.value
+}
+
+</script>
+
+<el-button @click="handleFullScreen">切换全屏</el-button>
+
+<div style="width: 800px; height: 400px;padding: 20px;background-color: #eee;resize: both;overflow: auto;">
+  <ScreenBox v-model:outsideIsFullscreen="outsideFullScreen">
+    <span style="color: #ffffff;">12121212</span>
+  </ScreenBox>
+</div>
 ```
 
-<BorderWrapper>123</BorderWrapper>
+<el-button @click="handleFullScreen">切换全屏</el-button>
 
-## 附带内容背景和高度控制
-
-直接使用
-
-```js{4}
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">
-  <slot />
-</BorderWrapper>
-```
-
-<BorderWrapper innerBackground="#f9c" outMinHeight="200px" innerMinHeight="300px">123</BorderWrapper>
+<div style="width: 800px; height: 400px;padding: 20px;background-color: #eee;resize: both;overflow: auto;">
+  <ScreenBox v-model:outsideIsFullscreen="outsideFullScreen">
+    <span style="color: #ffffff;">12121212</span>
+  </ScreenBox>
+</div>
 
 ## API
 
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| outMinHeight | 整体最小高度 | string | calc(100vh - 110px) |
-| innerMinHeight | 内部最小高度, 会撑开整体 | string | calc(100vh - 146px) |
-| innerBackground | 内部背景颜色 | string | #232324 |
+| designWidth | 设计图尺寸 宽度 | number | 1920 |
+| designHeight | 设计图尺寸 高度 | number | 1080 |
+| designFontSize | 设计图尺寸 字体 | string | 14px |
+| showFullscreen | 是否显示全屏 icon | boolean | false |
+| outsideIsFullscreen | 外部传入控制全屏的变量 | boolean | false |
 
 **Slots**
 | 插槽名 | 描述 | 参数 |
