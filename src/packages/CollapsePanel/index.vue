@@ -21,11 +21,15 @@ export default {
 import { computed, ref, watch } from "vue";
 import { IconifyIconOnline } from "../ReIcon";
 
-export type ModeType = "scale" | "height";
+export type ModeType = "scale" | "height" | "grid";
 const props = defineProps({
-  // 默认缩放方案，无需其他操作；定高方案必须传入一个展开后的固定高度
+  // 默认缩放方案，无需其他操作；
+  // 定高方案必须传入一个展开后的固定高度;
+  // grid方案不兼容safari
   mode: {
     type: String,
+    // TODO
+    // values: ["scale", "height", "grid"],
     values: ["scale", "height"],
     default: "scale",
   },

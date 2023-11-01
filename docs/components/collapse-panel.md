@@ -58,7 +58,7 @@
 **Props**
 | 参数名 | 描述 | 类型 | 默认值 |
 | ------------- | :-----------: | ----: | ---- |
-| mode | 运行模式 | scale/height | scale |
+| mode | 运行模式 | scale/height/grid | scale |
 | contentHeight | 内容高度，mode 为 height 时必填 | string | - |
 | v-model:collapsed | 是否折叠 | boolean | false |
 | titleText | 组件标题 | string | 折叠标题 |
