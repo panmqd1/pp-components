@@ -2,6 +2,7 @@ import type { App } from "vue";
 // TODO 渐变边框组件
 import BorderWrapper from "./BorderWrapper";
 import ChartEmpty from "./ChartEmpty";
+import CollapsePanel from "./CollapsePanel";
 import CustomTable from "./CustomTable";
 import DateMonthPicker from "./DateMonthPicker";
 import EllipticTags from "./EllipticTags";
@@ -18,6 +19,7 @@ export type { TagType } from "./EllipticTags/types";
 const componentList = [
   BorderWrapper,
   ChartEmpty,
+  CollapsePanel,
   CustomTable,
   DateMonthPicker,
   EllipticTags,
@@ -34,6 +36,7 @@ const componentList = [
 export {
   BorderWrapper,
   ChartEmpty,
+  CollapsePanel,
   CustomTable,
   DateMonthPicker,
   EllipticTags,

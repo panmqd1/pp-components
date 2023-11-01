@@ -26,6 +26,7 @@ export default defineConfig({
             link: "/components/border-wrapper",
           },
           { text: "图表空态 ChartEmpty", link: "/components/chart-empty" },
+          { text: "折叠板 CollapsePanel", link: "/components/collapse-panel" },
           { text: "简易表格 CustomTable", link: "/components/custom-table" },
           {
             text: "日期月份切换 DateMonthPicker",

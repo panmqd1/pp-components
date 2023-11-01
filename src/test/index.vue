@@ -1,20 +1,37 @@
 <template>
   <BorderWrapper>
-    <div id="test1" c-red>{{ shallowReactiveState.a.c }}</div>
-    <div id="test2" c-yellow>{{ shallowRefState.b }}</div>
-    <el-button @click="handleUpdate">更新视图</el-button>
-    <DateMonthPicker />
-    <WeekMonthPicker />
-    <EllipticTags :tags="tags" :maxTagCount="2" @change="handleTagsChange" />
-    <IconifyIconOnline
-      icon="ant-design:fullscreen-exit-outlined"
-      color="red"
-      width="32px"
-      height="32px"
-    />
-    <ChartEmpty width="400px" height="300px" />
-    <Loading :loading="loading" />
-    <el-button @click="setLoading">切换loading</el-button>
+    <div flex items-center h-200>
+      <div flex-1>
+        <div id="test1" c-red>{{ shallowReactiveState.a.c }}</div>
+        <div id="test2" c-yellow>{{ shallowRefState.b }}</div>
+        <el-button @click="handleUpdate">更新视图</el-button>
+        <DateMonthPicker />
+        <WeekMonthPicker />
+        <EllipticTags
+          :tags="tags"
+          :maxTagCount="2"
+          @change="handleTagsChange"
+        />
+        <IconifyIconOnline
+          icon="ant-design:fullscreen-exit-outlined"
+          color="red"
+          width="32px"
+          height="32px"
+        />
+        <ChartEmpty width="400px" height="300px" />
+        <Loading :loading="loading" />
+        <el-button @click="setLoading">切换loading</el-button>
+      </div>
+      <div flex-1 h-full>
+        <CollapsePanel
+          mode="height"
+          contentHeight="100px"
+          :contentStyle="{ 'background-color': 'red' }"
+        >
+          asdasdasd
+        </CollapsePanel>
+      </div>
+    </div>
   </BorderWrapper>
 </template>
 
@@ -29,6 +46,7 @@ import {
   EllipticTags,
   IconifyIconOnline,
   ChartEmpty,
+  CollapsePanel,
   type TagType,
 } from "../packages";
 
@@ -101,4 +119,8 @@ const setLoading = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.collapse_panel {
+  color: #fff;
+}
+</style>
