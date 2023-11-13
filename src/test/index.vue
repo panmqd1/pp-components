@@ -30,7 +30,6 @@
         >
           asdasdasd
         </CollapsePanel>
-        <!-- <SegmentedUpload /> -->
       </div>
     </div>
   </BorderWrapper>
@@ -50,7 +49,6 @@ import {
   CollapsePanel,
   type TagType,
 } from "../packages";
-// import SegmentedUpload from '/@/packages/SegmentedUpload/index.vue'
 
 // element-plus设置暗黑模式
 useDark({
