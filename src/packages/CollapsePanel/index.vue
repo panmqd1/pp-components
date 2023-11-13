@@ -86,6 +86,7 @@ watch(
 const handleTitleClick = () => {
   selfCollapsed.value = !selfCollapsed.value;
 };
+
 </script>
 <style lang="scss" scoped>
 .collapse_panel {

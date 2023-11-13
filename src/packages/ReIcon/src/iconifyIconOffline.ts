@@ -1,6 +1,7 @@
 import { h, defineComponent } from "vue";
 import { Icon as IconifyIcon, addIcon } from "@iconify/vue/dist/offline";
 
+// 加载多个图标， 使用 addCollection
 // remixicon
 import ArrowRightSLine from "@iconify-icons/ri/arrow-right-s-line";
 import ArrowLeftSLine from "@iconify-icons/ri/arrow-left-s-line";

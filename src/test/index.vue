@@ -1,7 +1,7 @@
 <template>
   <BorderWrapper>
-    <div flex items-center h-200>
-      <div flex-1>
+    <div class="grid_wrapper">
+      <div>
         <div id="test1" c-red>{{ shallowReactiveState.a.c }}</div>
         <div id="test2" c-yellow>{{ shallowRefState.b }}</div>
         <el-button @click="handleUpdate">更新视图</el-button>
@@ -22,7 +22,7 @@
         <Loading :loading="loading" />
         <el-button @click="setLoading">切换loading</el-button>
       </div>
-      <div flex-1 h-full>
+      <div>
         <CollapsePanel
           mode="height"
           contentHeight="100px"
@@ -30,6 +30,7 @@
         >
           asdasdasd
         </CollapsePanel>
+        <!-- <SegmentedUpload /> -->
       </div>
     </div>
   </BorderWrapper>
@@ -49,6 +50,7 @@ import {
   CollapsePanel,
   type TagType,
 } from "../packages";
+// import SegmentedUpload from '/@/packages/SegmentedUpload/index.vue'
 
 // element-plus设置暗黑模式
 useDark({
@@ -111,7 +113,7 @@ const handleTagsChange = (newTags: TagType[]) => {
 };
 
 const loading = ref(false);
-const setLoading = () => {
+const setLoading = async () => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
@@ -120,6 +122,12 @@ const setLoading = () => {
 </script>
 
 <style lang="scss" scoped>
+.grid_wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 600px;
+}
+
 .collapse_panel {
   color: #fff;
 }
