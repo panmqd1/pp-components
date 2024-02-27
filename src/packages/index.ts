@@ -6,6 +6,7 @@ import CollapsePanel from "./CollapsePanel";
 import CustomTable from "./CustomTable";
 import DateMonthPicker from "./DateMonthPicker";
 import EllipticTags from "./EllipticTags";
+import FilePicker from "./FilePicker";
 import Loading from "./Loading";
 import { IconifyIconOffline, IconifyIconOnline, FontIcon } from "./ReIcon";
 import ScreenBox from "./ScreenBox";
@@ -23,6 +24,7 @@ const componentList = [
   CustomTable,
   DateMonthPicker,
   EllipticTags,
+  FilePicker,
   Loading,
   IconifyIconOffline,
   IconifyIconOnline,
@@ -40,6 +42,7 @@ export {
   CustomTable,
   DateMonthPicker,
   EllipticTags,
+  FilePicker,
   Loading,
   IconifyIconOffline,
   IconifyIconOnline,

@@ -12,6 +12,19 @@
           :maxTagCount="2"
           @change="handleTagsChange"
         />
+        <FilePicker
+          multiple
+          draggable
+          accept=".mp4"
+          @change="handleFilesChange"
+        />
+        <FilePicker
+          :splitOptions="{ enable: true }"
+          @change="handleFilesChange"
+        />
+        <div v-for="(file, index) in pickedFiles" :key="index">
+          {{ file.name }}
+        </div>
         <IconifyIconOnline
           icon="ant-design:fullscreen-exit-outlined"
           color="red"
@@ -44,6 +57,7 @@ import {
   DateMonthPicker,
   WeekMonthPicker,
   EllipticTags,
+  FilePicker,
   IconifyIconOnline,
   ChartEmpty,
   CollapsePanel,
@@ -108,6 +122,12 @@ const tags = ref<TagType[]>([
 
 const handleTagsChange = (newTags: TagType[]) => {
   tags.value = newTags;
+};
+
+const pickedFiles = ref<File[]>([]);
+const handleFilesChange = (files: File[]) => {
+  pickedFiles.value = files;
+  console.log("[ pickedFiles.value ] >", pickedFiles.value);
 };
 
 const loading = ref(false);

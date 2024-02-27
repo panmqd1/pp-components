@@ -11,3 +11,18 @@ export const withInstall = <T extends Component>(comp: T) => {
   };
   return comp as SFCWithInstall<T>;
 };
+
+export const loadScript = (url: string) => {
+  return new Promise((resolve, reject) => {
+    // 加载sparkMD5
+    const tag = document.createElement("script");
+    tag.src = url;
+    document.body.append(tag);
+    tag.onload = () => {
+      resolve(true);
+    };
+    tag.onerror = () => {
+      reject();
+    };
+  });
+};
