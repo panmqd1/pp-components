@@ -15,8 +15,8 @@ hero:
 features:
   - title: ScreenBox
     details: 创建一个通过缩放实现自适应的盒子
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: DateMonthPicker
+    details: 限制并选择几天或几个月
+  - title: FilePicker
+    details: 可实现大文件分片的多功能文件选择器
 ---
