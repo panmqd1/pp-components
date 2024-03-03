@@ -33,6 +33,7 @@ export default defineConfig({
             link: "/components/date-month-picker",
           },
           { text: "缩略标签 EllipticTags", link: "/components/elliptic-tags" },
+          { text: "文件选择器 FilePicker", link: "/components/file-picker" },
           { text: "自定义加载 Loading", link: "/components/loading" },
           { text: "图标 ReIcon", link: "/components/reicon" },
           { text: "缩放盒子 ScreenBox", link: "/components/screen-box" },

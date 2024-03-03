@@ -1,4 +1,4 @@
-import { loadScript } from "./index";
+import { createWorker } from "./worker";
 
 export type SplitOptionsType = {
   // 是否开启大文件分片
@@ -9,24 +9,52 @@ export type SplitOptionsType = {
   chunkCount?: number;
 };
 
+export type ChunkType = {
+  index: number;
+  startBit: number;
+  endBit: number;
+  blob: Blob;
+  hash: number;
+};
+
+// NOTE 仅作为参考，worker不调用此方法
+// 创建单一分片
+export const createChunk = (
+  file: File,
+  index: number,
+  chunkSize: number
+): Promise<ChunkType> => {
+  return new Promise((resolve) => {
+    const startBit = index * chunkSize;
+    const endBit = (index + 1) * chunkSize;
+    const blob = file.slice(startBit, endBit);
+
+    // @ts-ignore
+    const spark = new SparkMD5.ArrayBuffer();
+    const fileReader = new FileReader();
+
+    fileReader.onload = (e) => {
+      spark.append(e.target?.result);
+      resolve({
+        index,
+        startBit,
+        endBit,
+        blob,
+        hash: spark.end(),
+      });
+    };
+    fileReader.readAsArrayBuffer(blob);
+  });
+};
+
 export const cutFile = (
   file: File,
   options: SplitOptionsType
 ): Promise<ChunkType[]> => {
-  return new Promise((resolve) => {
+  return new Promise(async (resolve) => {
     if (!file) {
       resolve([]);
     }
-
-    // worker里面需要单独引入
-    // try {
-    //   // @ts-ignore
-    //   new SparkMD5.ArrayBuffer();
-    // } catch (error) {
-    //   await loadScript(
-    //     `https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js`
-    //   );
-    // }
 
     let _chunkSize = 0;
     let _chunkCount = 0;
@@ -66,8 +94,52 @@ export const cutFile = (
     let terminatedThreadCount = 0;
     // 开启worker线程处理
     while (remaining > 0) {
-      const worker = new Worker("/src/workers/file.ts", {
-        type: "module",
+      // 内联worker，无法import，因此需要 type = classic ，使用 importScripts
+      // worker无法传递方法，所以需要把方法都定义在内联里面
+      const worker = createWorker(() => {
+        // @ts-ignore
+        importScripts(
+          `https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js`
+        );
+
+        // @ts-ignore
+        const createChunk = (file, index, chunkSize) => {
+          return new Promise((resolve) => {
+            const startBit = index * chunkSize;
+            const endBit =
+              (index + 1) * chunkSize > file.size
+                ? file.size
+                : (index + 1) * chunkSize;
+            const blob = file.slice(startBit, endBit);
+
+            // @ts-ignore
+            const spark = new SparkMD5.ArrayBuffer();
+            const fileReader = new FileReader();
+
+            fileReader.onload = (e) => {
+              spark.append(e.target?.result);
+              resolve({
+                index,
+                startBit,
+                endBit,
+                blob,
+                hash: spark.end(),
+              });
+            };
+            fileReader.readAsArrayBuffer(blob);
+          });
+        };
+
+        onmessage = async (e) => {
+          const { file, startIndex, endIndex, chunkSize } = e.data;
+          const chunks = [];
+
+          for (let i = startIndex; i < endIndex; i++) {
+            chunks.push(await createChunk(file, i, chunkSize));
+          }
+
+          self.postMessage(chunks);
+        };
       });
 
       // 当前线程需要处理的分片索引范围
@@ -77,6 +149,7 @@ export const cutFile = (
         (threadIndex + 1) * threadChunkCount > _chunkCount
           ? _chunkCount
           : (threadIndex + 1) * threadChunkCount;
+
       worker.postMessage({
         file,
         startIndex,
@@ -106,42 +179,6 @@ export const cutFile = (
       threadIndex++;
       remaining -= threadChunkCount;
     }
-  });
-};
-
-export type ChunkType = {
-  index: number;
-  startBit: number;
-  endBit: number;
-  blob: Blob;
-  hash: number;
-};
-// 创建单一分片
-export const createChunk = (
-  file: File,
-  index: number,
-  chunkSize: number
-): Promise<ChunkType> => {
-  return new Promise((resolve) => {
-    const startBit = index * chunkSize;
-    const endBit = (index + 1) * chunkSize;
-    const blob = file.slice(startBit, endBit);
-
-    // @ts-ignore
-    const spark = new SparkMD5.ArrayBuffer();
-    const fileReader = new FileReader();
-
-    fileReader.onload = (e) => {
-      spark.append(e.target?.result);
-      resolve({
-        index,
-        startBit,
-        endBit,
-        blob,
-        hash: spark.end(),
-      });
-    };
-    fileReader.readAsArrayBuffer(blob);
   });
 };
 

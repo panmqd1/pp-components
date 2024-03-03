@@ -23,7 +23,12 @@
           @change="handleFilesChange"
         />
         <div v-for="(file, index) in pickedFiles" :key="index">
-          {{ file.name }}
+          <div v-if="(file as File).name">
+            {{ getFileStr(file as File) }}
+          </div>
+          <div v-if="(file as ChunkType).hash">
+            {{ getFileStr(file as ChunkType) }}
+          </div>
         </div>
         <IconifyIconOnline
           icon="ant-design:fullscreen-exit-outlined"
@@ -63,6 +68,7 @@ import {
   CollapsePanel,
   type TagType,
 } from "../packages";
+import { ChunkType } from "../utils/file";
 
 // element-plus设置暗黑模式
 useDark({
@@ -124,10 +130,23 @@ const handleTagsChange = (newTags: TagType[]) => {
   tags.value = newTags;
 };
 
-const pickedFiles = ref<File[]>([]);
-const handleFilesChange = (files: File[]) => {
+const pickedFiles = ref<File[] | ChunkType[]>([]);
+const handleFilesChange = (files: File[] | ChunkType[]) => {
   pickedFiles.value = files;
   console.log("[ pickedFiles.value ] >", pickedFiles.value);
+};
+
+const getFileStr = (file: File | ChunkType) => {
+  if (file instanceof File) {
+    return `${file.name}    ${(file.size / 1024 / 1024).toFixed(2)}MB    ${
+      file.type
+    }`;
+  }
+  return `${file.index}    ${file.hash}    ${(
+    file.blob.size /
+    1024 /
+    1024
+  ).toFixed(2)}MB`;
 };
 
 const loading = ref(false);
